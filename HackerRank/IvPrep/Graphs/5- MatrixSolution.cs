@@ -15,13 +15,13 @@ namespace HackerRank.IvPrep.Graphs
 
         static int MinTime(int[][] roads, int[] machines)
         {
-            var time = 0;
+            var minTime = 0;
 
             // 1 - Build Graph
             var graph = BuildGraph(roads);
             var machinesMap = machines.ToDictionary(x => x, x => x);
             var visitedMachines = new bool[roads.Length + 1];
-            var destroyedRoads = new Dictionary<string, object>();
+            var roadsToDestroy = new Dictionary<string, int>();
 
             // 2- Loop through cities that have machines and find the sum of min time to destroy the roads between this
             // city and each other city that has machine 
@@ -30,22 +30,31 @@ namespace HackerRank.IvPrep.Graphs
                 if (!machinesMap.ContainsKey(city.Key))
                     continue;
 
-                var timeToDestroy = FindShortestPathToMachines(graph, city.Key, visitedMachines, machinesMap);
-                visitedMachines[city.Key] = true;
+                FindShortestPathToMachines(
+                    graph,
+                    city.Key,
+                    visitedMachines,
+                    machinesMap,
+                    roadsToDestroy);
 
-                time += timeToDestroy;
+                visitedMachines[city.Key] = true;
             }
 
-            return time;
+            foreach (var road in roadsToDestroy)
+            {
+                minTime += road.Value;
+            }
+
+            return minTime;
         }
 
-        private static int FindShortestPathToMachines(
+        private static void FindShortestPathToMachines(
             IDictionary<int, IList<Edge>> graph,
             int start,
             bool[] visitedMachines,
-            IDictionary<int, int> machinesMap)
+            IDictionary<int, int> machinesMap,
+            IDictionary<string, int> roadsToDestory)
         {
-            var minTime = 0;
             var queue = new Queue<int>();
             queue.Enqueue(start);
 
@@ -57,6 +66,12 @@ namespace HackerRank.IvPrep.Graphs
             for (int i = 0; i < times.Length; i++)
             {
                 times[i] = 0;
+            }
+
+            var parents = new int[graph.Count];
+            for (int i = 0; i < parents.Length; i++)
+            {
+                parents[i] = -1;
             }
 
             // Traverse and calculate the min time between start node and each other machine node
@@ -71,6 +86,7 @@ namespace HackerRank.IvPrep.Graphs
                         continue;
 
                     visited[neighbor.Node] = true;
+                    parents[neighbor.Node] = pivot;
 
                     // Calculate time to visit neighbor
                     if (times[pivot] == 0)
@@ -93,10 +109,18 @@ namespace HackerRank.IvPrep.Graphs
             // Summing the min time from start point to each machine node
             for (int i = 0; i < times.Length; i++)
             {
-                minTime += times[i];
-            }
+                var time = times[i];
+                if (time > 0 && machinesMap.ContainsKey(i))
+                {
+                    var road = string.Join(string.Empty, i, parents[i]);
+                    var inverseRoad = string.Join(string.Empty, parents[i], i);
 
-            return minTime;
+                    if (!roadsToDestory.ContainsKey(road) && !roadsToDestory.ContainsKey(inverseRoad))
+                    {
+                        roadsToDestory.Add(road, time);
+                    }
+                }
+            }
         }
 
         static IDictionary<int, IList<Edge>> BuildGraph(int[][] roads)
@@ -125,7 +149,7 @@ namespace HackerRank.IvPrep.Graphs
         {
             TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
 
-            string[] nk = Console.ReadLine().Split(' ');
+            string[] nk = Console.ReadLine().Trim().Split(' ');
 
             int n = Convert.ToInt32(nk[0]);
 
@@ -135,14 +159,14 @@ namespace HackerRank.IvPrep.Graphs
 
             for (int i = 0; i < n - 1; i++)
             {
-                roads[i] = Array.ConvertAll(Console.ReadLine().Split(' '), roadsTemp => Convert.ToInt32(roadsTemp));
+                roads[i] = Array.ConvertAll(Console.ReadLine().Trim().Split(' '), roadsTemp => Convert.ToInt32(roadsTemp));
             }
 
             int[] machines = new int [k];
 
             for (int i = 0; i < k; i++)
             {
-                int machinesItem = Convert.ToInt32(Console.ReadLine());
+                int machinesItem = Convert.ToInt32(Console.ReadLine().Trim());
                 machines[i] = machinesItem;
             }
 
