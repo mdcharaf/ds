@@ -127,5 +127,49 @@ namespace DS.DP
             memo.Add(targetSum, shortestCombination);
             return shortestCombination;
         }
+
+        public static bool CanConstruct(string target, string[] words, IDictionary<string, bool> memo = null)
+        {
+            memo ??= new Dictionary<string, bool>();
+            
+            if (string.IsNullOrEmpty(target)) return true;
+            if (memo.ContainsKey(target)) return memo[target];
+
+            foreach (var word in words)
+            {
+                if (target.StartsWith(word))
+                {
+                    var suffix = target.Substring(word.Length);
+                    if (CanConstruct(suffix, words, memo))
+                    {
+                        memo.Add(target, true);
+                        return true;
+                    }
+                }
+            }
+
+            memo.Add(target, false);
+            return false;
+        }
+
+        public static long CountConstruct(string target, string[] words, IDictionary<string, long> memo = null)
+        {
+            memo ??= new Dictionary<string, long>();
+            if (string.IsNullOrEmpty(target)) return 1;
+            if (memo.ContainsKey(target)) return memo[target];
+
+            long count = 0;
+            foreach (var word in words)
+            {
+                if (target.StartsWith(word))
+                {
+                    var suffix = target.Substring(word.Length);
+                    count += CountConstruct(suffix, words, memo);
+                }
+            }
+
+            memo.Add(target, count);
+            return count;
+        }
     }
 }

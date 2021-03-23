@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DS.DP;
 
 namespace DS
@@ -24,20 +25,37 @@ namespace DS
             // PrintArray(Slow.HowSum(7, new []{2, 4})); // null
             // PrintArray(Slow.HowSum(8, new []{2, 3, 5})); // [2, 2, 2, 2]
             // PrintArray(Memoization.HowSum(300, new []{7, 14})); // null
+
+            // PrintArray(Slow.BestSum(7, new [] {5, 3, 4, 7})); //[7]
+            // PrintArray(Slow.BestSum(8, new [] {2, 3, 5})); // [3, 5]
+            // PrintArray(Slow.BestSum(8, new [] {1, 4, 5})); // [4, 4]
+            // PrintArray(Memoization.BestSum(100, new [] {1, 2, 5, 25})); // [25, 25, 25, 25]
+
+            // Console.WriteLine(Slow.CanConstruct("abcdef", new[] {"ab", "abc", "cd", "def", "abcd"}));
+            // Console.WriteLine(Slow.CanConstruct("skateboard", new[] {"bo", "rd", "ate", "t", "ska", "sk", "boar"}));
+            // Console.WriteLine(Memoization.CanConstruct("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef",
+            //     new[] {"e", "eee", "ee", "eeee", "eeeee", "eeeeee", "eeeeeeee"}));
+
+            // Console.WriteLine(Slow.CountConstruct("purple", new[] {"purp", "p", "ur", "le", "purpl"}));
+            // Console.WriteLine(Slow.CountConstruct("abcdef", new[] {"ab", "abc", "cd", "def", "abcd"}));
+            // Console.WriteLine(Slow.CountConstruct("skateboard", new[] {"bo", "rd", "ate", "t", "ska", "sk", "boar"}));
+            // Console.WriteLine(Memoization.CountConstruct("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef",
+            //     new[] {"e", "eee", "ee", "eeee", "eeeee", "eeeeee", "eeeeeeee"}));
             
-            PrintArray(Slow.BestSum(7, new [] {5, 3, 4, 7})); //[7]
-            PrintArray(Slow.BestSum(8, new [] {2, 3, 5})); // [3, 5]
-            PrintArray(Slow.BestSum(8, new [] {1, 4, 5})); // [4, 4]
-            PrintArray(Memoization.BestSum(100, new [] {1, 2, 5, 25})); // [25, 25, 25, 25]
+            PrintArray(Slow.AllConstruct("purple", new[] {"purp", "p", "ur", "le", "purpl"}));
+            PrintArray(Slow.AllConstruct("abcdef", new[] {"ab", "abc", "cd", "def", "abcd"}));
+            PrintArray(Slow.AllConstruct("skateboard", new[] {"bo", "rd", "ate", "t", "ska", "sk", "boar"}));
+            // PrintArray(Slow.AllConstruct("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef",
+            //     new[] {"e", "eee", "ee", "eeee", "eeeee", "eeeeee", "eeeeeeee"}));
         }
 
-        static void PrintArray(int[] arr)
+        static void PrintArray<T>(IEnumerable<T> arr)
         {
             if (arr == null)
                 Console.WriteLine("null");
             else
             {
-               Console.WriteLine("[{0}]", string.Join(", ", arr));
+                Console.WriteLine("[{0}]", string.Join(", ", arr));
             }
         }
     }

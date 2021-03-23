@@ -79,5 +79,65 @@ namespace DS.DP
 
             return shortestCombination;
         }
+
+        public static bool CanConstruct(string target, string[] words)
+        {
+            if (string.IsNullOrEmpty(target)) return true;
+
+            foreach (var word in words)
+            {
+                if (target.StartsWith(word))
+                {
+                    var suffix = target.Substring(word.Length);
+                    if (CanConstruct(suffix, words))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        public static long CountConstruct(string target, string[] words)
+        {
+            if (string.IsNullOrEmpty(target)) return 1;
+
+            long count = 0;
+            foreach (var word in words)
+            {
+                if (target.StartsWith(word))
+                {
+                    var suffix = target.Substring(word.Length);
+                    count += CountConstruct(suffix, words);
+                }
+            }
+
+            return count;
+        }
+
+        public static IList<string> AllConstruct(string target, string[] words)
+        {
+            if (string.IsNullOrEmpty(target))
+                return new List<string>();
+                
+
+            var result = new List<string>();
+            foreach (var word in words)
+            {
+                if (target.StartsWith(word))
+                {
+                    var suffix = target.Substring(word.Length);
+                    var suffixCombinations = AllConstruct(suffix, words);
+                    if (suffixCombinations != null)
+                    {
+                        result.AddRange(suffixCombinations);
+                        result.Add(word);
+                    }
+                }
+            }
+
+            return result.Count == 0 ? null : result;
+        }
     }
 }
