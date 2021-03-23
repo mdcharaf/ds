@@ -116,11 +116,11 @@ namespace DS.DP
             return count;
         }
 
-        public static IList<string> AllConstruct(string target, string[] words)
+        public static IList<string> AllConstruct2(string target, string[] words)
         {
             if (string.IsNullOrEmpty(target))
                 return new List<string>();
-                
+
 
             var result = new List<string>();
             foreach (var word in words)
@@ -128,12 +128,43 @@ namespace DS.DP
                 if (target.StartsWith(word))
                 {
                     var suffix = target.Substring(word.Length);
-                    var suffixCombinations = AllConstruct(suffix, words);
+                    var suffixCombinations = AllConstruct2(suffix, words);
                     if (suffixCombinations != null)
                     {
                         result.AddRange(suffixCombinations);
                         result.Add(word);
                     }
+                }
+            }
+
+            return result.Count == 0 ? null : result;
+        }
+
+        public static List<IEnumerable<string>> AllConstruct(string target, string[] words)
+        {
+            if (string.IsNullOrEmpty(target))
+                return new List<IEnumerable<string>>();
+
+
+            var result = new List<IEnumerable<string>>();
+            foreach (var word in words)
+            {
+                if (target.StartsWith(word))
+                {
+                    var suffix = target.Substring(word.Length);
+                    var suffixCombinations = AllConstruct(suffix, words);
+                    var targetCombinations = new List<List<string>>();
+                    
+                    if (suffixCombinations == null)
+                        continue;
+                    
+                    if (suffixCombinations.Count == 0)
+                        targetCombinations.Add(new List<string> {word});
+                    else
+                        targetCombinations.AddRange(suffixCombinations.Select(l => new List<string>(l) {word}));
+
+
+                    result.AddRange(targetCombinations.Select(l => l));
                 }
             }
 

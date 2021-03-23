@@ -8,7 +8,7 @@ namespace DS.DP
     //  - Visualize the problem as a tree
     //  - implement the tree using recursion
     //  - test it
-    
+
     // 2- Make it efficient 
     //  - Add Memo object
     //  - Add a base case to return memo values
@@ -20,7 +20,7 @@ namespace DS.DP
             memo ??= new Dictionary<long, long>();
 
             if (n <= 2) return 1;
-            
+
             if (memo.ContainsKey(n)) return memo[n];
 
             memo.Add(n, Fib(n - 1, memo) + Fib(n - 2, memo));
@@ -34,25 +34,25 @@ namespace DS.DP
 
             if (m == 0 || n == 0) return 0;
             if (m == 1 || n == 1) return 1;
-            
+
             var nm = string.Join(",", n, m);
             var mn = string.Join(",", m, n);
-            
+
             if (memo.ContainsKey(nm) || memo.ContainsKey(mn))
                 return memo[nm];
 
             var result = GridTraveller(m - 1, n, memo) + GridTraveller(m, n - 1, memo);
-            
+
             memo.TryAdd(nm, result);
             memo.TryAdd(mn, result);
-            
+
             return result;
         }
 
         public static bool CanSum(long targetSum, int[] arr, IDictionary<long, bool> memo = null)
         {
             memo ??= new Dictionary<long, bool>();
-            
+
             if (targetSum == 0) return true;
             if (targetSum < 0) return false;
             if (memo.ContainsKey(targetSum))
@@ -68,7 +68,7 @@ namespace DS.DP
                     return true;
                 }
             }
-            
+
             memo.Add(targetSum, false);
             return false;
         }
@@ -76,7 +76,7 @@ namespace DS.DP
         public static int[] HowSum(long targetSum, int[] arr, IDictionary<long, int[]> memo = null)
         {
             memo ??= new Dictionary<long, int[]>();
-            
+
             if (targetSum < 0) return null;
             if (targetSum == 0) return Array.Empty<int>();
             if (memo.ContainsKey(targetSum)) return memo[targetSum];
@@ -90,7 +90,7 @@ namespace DS.DP
                 {
                     var result = remainderResult.Concat(new[] {num}).ToArray();
                     memo.Add(targetSum, result);
-                    
+
                     return result;
                 }
             }
@@ -108,7 +108,7 @@ namespace DS.DP
             if (targetSum < 0) return null;
 
             int[] shortestCombination = null;
-            
+
             foreach (var num in arr)
             {
                 var remainder = targetSum - num;
@@ -131,7 +131,7 @@ namespace DS.DP
         public static bool CanConstruct(string target, string[] words, IDictionary<string, bool> memo = null)
         {
             memo ??= new Dictionary<string, bool>();
-            
+
             if (string.IsNullOrEmpty(target)) return true;
             if (memo.ContainsKey(target)) return memo[target];
 
@@ -170,6 +170,44 @@ namespace DS.DP
 
             memo.Add(target, count);
             return count;
+        }
+
+        public static IList<IList<string>> AllConstruct(string target, string[] words,
+            IDictionary<string, IList<IList<string>>> memo = null)
+        {
+            memo ??= new Dictionary<string, IList<IList<string>>>();
+            if (string.IsNullOrEmpty(target)) return new List<IList<string>>();
+            if (memo.ContainsKey(target)) return memo[target];
+
+            var result = new List<IList<string>>();
+            foreach (var word in words)
+            {
+                if (target.StartsWith(word))
+                {
+                    var suffix = target.Substring(word.Length);
+                    var suffixCombination = AllConstruct(suffix, words, memo);
+
+                    if (suffixCombination != null)
+                    {
+                        var targetCombination = new List<List<string>>();
+                        if (suffixCombination.Count == 0)
+                            targetCombination.Add(new List<string>() {word});
+                        else
+                            targetCombination.AddRange(
+                                suffixCombination.Select(sc => new List<string>(sc) {word}));
+
+                        result.AddRange(targetCombination);
+                    }
+                }
+            }
+
+            if (result.Count == 0)
+            {
+                memo.Add(target, null);
+                return null;
+            }
+            memo.Add(target, result);
+            return result;
         }
     }
 }

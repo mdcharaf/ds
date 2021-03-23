@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DS.DP;
 
 namespace DS
@@ -42,11 +43,11 @@ namespace DS
             // Console.WriteLine(Memoization.CountConstruct("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef",
             //     new[] {"e", "eee", "ee", "eeee", "eeeee", "eeeeee", "eeeeeeee"}));
             
-            PrintArray(Slow.AllConstruct("purple", new[] {"purp", "p", "ur", "le", "purpl"}));
-            PrintArray(Slow.AllConstruct("abcdef", new[] {"ab", "abc", "cd", "def", "abcd"}));
-            PrintArray(Slow.AllConstruct("skateboard", new[] {"bo", "rd", "ate", "t", "ska", "sk", "boar"}));
-            // PrintArray(Slow.AllConstruct("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef",
-            //     new[] {"e", "eee", "ee", "eeee", "eeeee", "eeeeee", "eeeeeeee"}));
+            PrintArrayArray(Memoization.AllConstruct("purple", new[] {"purp", "p", "ur", "le", "purpl"}));
+            PrintArrayArray(Memoization.AllConstruct("abcdef", new[] {"ab", "abc", "cd", "def", "abcd"}));
+            PrintArrayArray(Memoization.AllConstruct("skateboard", new[] {"bo", "rd", "ate", "t", "ska", "sk", "boar"}));
+            PrintArrayArray(Memoization.AllConstruct("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef",
+                new[] {"e", "eee", "ee", "eeee", "eeeee", "eeeeee", "eeeeeeee"}));
         }
 
         static void PrintArray<T>(IEnumerable<T> arr)
@@ -56,6 +57,25 @@ namespace DS
             else
             {
                 Console.WriteLine("[{0}]", string.Join(", ", arr));
+            }
+        }
+        
+        static void PrintArrayArray<T>(IEnumerable<IEnumerable<T>> arrs)
+        {
+            if (arrs == null)
+                Console.WriteLine("null");
+            else
+            {
+                foreach (var arr in arrs)
+                {
+                    if (arr == null)
+                    {
+                        Console.WriteLine("null");
+                        continue;
+                    }
+                    
+                    Console.WriteLine("[{0}]", string.Join(", ", arr));
+                }
             }
         }
     }
