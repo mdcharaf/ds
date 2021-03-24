@@ -179,7 +179,7 @@ namespace DS.DP
             if (string.IsNullOrEmpty(target)) return new List<IList<string>>();
             if (memo.ContainsKey(target)) return memo[target];
 
-            var result = new List<IList<string>>();
+            List<IList<string>> result = null;
             foreach (var word in words)
             {
                 if (target.StartsWith(word))
@@ -189,6 +189,8 @@ namespace DS.DP
 
                     if (suffixCombination != null)
                     {
+                        result ??= new List<IList<string>>();
+
                         var targetCombination = new List<List<string>>();
                         if (suffixCombination.Count == 0)
                             targetCombination.Add(new List<string>() {word});
@@ -201,11 +203,6 @@ namespace DS.DP
                 }
             }
 
-            if (result.Count == 0)
-            {
-                memo.Add(target, null);
-                return null;
-            }
             memo.Add(target, result);
             return result;
         }
