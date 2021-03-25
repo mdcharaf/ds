@@ -148,7 +148,7 @@ namespace DS.DP
                 foreach (var word in words)
                 {
                     var targetSubString = TrySubstring(targetString, i, word.Length);
-                    if (targetSubString != null && targetSubString.StartsWith(word))
+                    if (targetSubString != null && targetSubString.Equals(word))
                     {
                         if (i + word.Length < table.Length)
                         {
@@ -175,16 +175,16 @@ namespace DS.DP
             {
                 foreach (var word in words)
                 {
+                    if (i + word.Length < table.Count)
+                        continue;
+
                     var targetSubstring = TrySubstring(targetString, i, word.Length);
-                    if (targetSubstring != null && targetSubstring.StartsWith(word))
+                    if (targetSubstring != null && targetSubstring.Equals(word))
                     {
-                        if (i + word.Length < table.Count)
-                        {
                             foreach (var combination in table[i])
                             {
-                                table[i + word.Length].Add(combination.Concat(new []{word}));
+                                table[i + word.Length].Add(combination.Concat(new[] {word}));
                             }
-                        }
                     }
                 }
             }

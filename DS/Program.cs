@@ -94,14 +94,14 @@ namespace DS
             // Console.WriteLine(Tabulation.CountConstruct("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef",
             //     new[] {"e", "eee", "ee", "eeee", "eeeee", "eeeeee", "eeeeeeee"})); //0
 
-            PrintArrayArray(Tabulation.AllConstruct("purple", new[] {"purp", "p", "ur", "le", "purpl"}));
-            PrintArrayArray(Tabulation.AllConstruct("abcdef", new[] {"ab", "abc", "cd", "def", "abcd", "ef", "c"}));
-            PrintArrayArray(Tabulation.AllConstruct("skateboard",
-                new[] {"bo", "rd", "ate", "t", "ska", "sk", "boar"})); 
-            PrintArrayArray(Tabulation.AllConstruct("enterpotentpot",
-                new[] {"a", "p", "ent", "enter", "ot", "o", "t"})); 
-            PrintArrayArray(Tabulation.AllConstruct("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef",
-                new[] {"e", "eee", "ee", "eeee", "eeeee", "eeeeee", "eeeeeeee"}));
+            // PrintArrayArray(Tabulation.AllConstruct("purple", new[] {"purp", "p", "ur", "le", "purpl"}));
+            // PrintArrayArray(Tabulation.AllConstruct("abcdef", new[] {"ab", "abc", "cd", "def", "abcd", "ef", "c"}));
+            // PrintArrayArray(Tabulation.AllConstruct("skateboard",
+            //     new[] {"bo", "rd", "ate", "t", "ska", "sk", "boar"})); 
+            // PrintArrayArray(Tabulation.AllConstruct("enterpotentpot",
+            //     new[] {"a", "p", "ent", "enter", "ot", "o", "t"})); 
+            // PrintArrayArray(Tabulation.AllConstruct("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef",
+            //     new[] {"e", "eee", "ee", "eeee", "eeeee", "eeeeee", "eeeeeeee"}));
         }
 
         static void PrintArray<T>(IEnumerable<T> arr)
