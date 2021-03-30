@@ -1,4 +1,5 @@
 ﻿using System;
+using HackerRank.IvPrep.DP;
 using HackerRank.IvPrep.Graphs;
 
 namespace HackerRank
@@ -7,7 +8,7 @@ namespace HackerRank
     {
         static void Main(string[] args)
         {
-            MatrixSolution.Debug();
+            AbbreviationSolution.RunMain();
         }
     }
 }

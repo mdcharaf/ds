@@ -147,10 +147,12 @@ namespace DS.DP
             {
                 foreach (var word in words)
                 {
+                    if (i + word.Length >= table.Length)
+                        continue;
+                    
                     var targetSubString = TrySubstring(targetString, i, word.Length);
                     if (targetSubString != null && targetSubString.Equals(word))
                     {
-                        if (i + word.Length < table.Length)
                         {
                             table[i + word.Length] += table[i];
                         }
@@ -175,16 +177,52 @@ namespace DS.DP
             {
                 foreach (var word in words)
                 {
-                    if (i + word.Length < table.Count)
+                    if (i + word.Length >= table.Count)
                         continue;
 
                     var targetSubstring = TrySubstring(targetString, i, word.Length);
                     if (targetSubstring != null && targetSubstring.Equals(word))
                     {
-                            foreach (var combination in table[i])
-                            {
-                                table[i + word.Length].Add(combination.Concat(new[] {word}));
-                            }
+                        foreach (var combination in table[i])
+                        {
+                            table[i + word.Length].Add(combination.Concat(new[] {word}));
+                        }
+                    }
+                }
+            }
+
+            return table[targetString.Length];
+        }
+
+        public static IEnumerable<IEnumerable<string>> AllConstruct2(string targetString, string[] words)
+        {
+            var table = new List<List<IEnumerable<string>>>();
+            for (int i = 0; i < targetString.Length + 1; i++)
+            {
+                table.Add(new List<IEnumerable<string>>());
+            }
+
+            table[0].Add(new List<string>());
+            var wordsList = new List<string>(words);
+
+            for (int i = 0; i < table.Count - 1; i++)
+            {
+                for (int j = 0; j < wordsList.Count; j++)
+                {
+                    var word = wordsList[j];
+                    if (i + word.Length >= table.Count)
+                        continue;
+
+                    var targetSubstring = TrySubstring(targetString, i, word.Length);
+                    if (targetSubstring != null &&
+                        targetSubstring.Equals(word, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        foreach (var combination in table[i])
+                        {
+                            table[i + word.Length].Add(combination.Concat(new[] {word}));
+                        }
+
+                        wordsList.RemoveAt(j--);
                     }
                 }
             }

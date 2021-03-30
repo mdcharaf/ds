@@ -102,6 +102,9 @@ namespace DS
             //     new[] {"a", "p", "ent", "enter", "ot", "o", "t"})); 
             // PrintArrayArray(Tabulation.AllConstruct("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef",
             //     new[] {"e", "eee", "ee", "eeee", "eeeee", "eeeeee", "eeeeeeee"}));
+            
+            PrintArrayArray(Tabulation.AllConstruct2("ABC",
+                new[] {"d", "a", "B", "c", "d"})); 
         }
 
         static void PrintArray<T>(IEnumerable<T> arr)
