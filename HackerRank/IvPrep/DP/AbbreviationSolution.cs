@@ -38,14 +38,23 @@ namespace HackerRank.IvPrep.DP
                 else
                 {
                     var removeSourceChar = source.Remove(i, 1);
+
+                    // If i is beyond target length then we just need to remove, no need to replace
+                    if (i >= target.Length)
+                    {
+                        memo.Add(source, CanConstruct(removeSourceChar, target, i, memo));
+                        return memo[source];
+                    }
+
                     var replaceSourceChar =
                         removeSourceChar.Insert(i, char.ToUpper(source[i]).ToString());
 
-                    var result = CanConstruct(removeSourceChar, target, i, memo) ||
-                                 CanConstruct(replaceSourceChar, target, i, memo);
+                    // Only attempt replacing when if the upper source char equals target character
+                    memo.Add(source,
+                        char.ToUpper(source[i]) == target[i] && CanConstruct(replaceSourceChar, target, i, memo) ||
+                        CanConstruct(removeSourceChar, target, i, memo));
 
-                    memo.Add(source, result);
-                    return result;
+                    return memo[source];
                 }
             }
 

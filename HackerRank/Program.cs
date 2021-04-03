@@ -8,7 +8,7 @@ namespace HackerRank
     {
         static void Main(string[] args)
         {
-            AbbreviationSolution.RunTestCase();
+            MaxArraySumSolution.RunMain();
         }
     }
 }
