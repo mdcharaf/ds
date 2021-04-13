@@ -1,60 +1,51 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
 namespace HackerRank.IvPrep.DP
 {
+    // https://www.hackerrank.com/challenges/max-array-sum?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=dynamic-programming
     class MaxArraySumSolution
     {
         static long MaxSubsetSum(int[] arr)
         {
-            var memo = new Dictionary<int, long>();
-            var arr2 = new[] {0, 0}.Concat(arr).ToArray();
-
-            var result = MaxSubsetSum(arr2, 0, memo);
-
-            return result;
+            return MaxSubsetSum2(arr);
         }
-
-        static long MaxSubsetSum(int[] arr, int p, IDictionary<int, long> memo)
+        
+        static long MaxSubsetSum2(int[] arr)
         {
-            var subArrayLength = arr.Length - p;
-            
-            if (subArrayLength <= 0) return 0;
-            if (subArrayLength <= 2)
-                return arr[p];
+            var table = new int[arr.Length];
 
-            if (memo.ContainsKey(p))
-                return memo[p];
-
-            var result = long.MinValue;
-
-            for (int i = p + 2; i < arr.Length; i++)
+            table[0] = arr[0];
+            table[1] = Math.Max(arr[0], arr[1]);
+            for (int i = 2; i < arr.Length; i++)
             {
-                var maxSum = arr[p] + MaxSubsetSum(arr, i, memo);
-
-                if (maxSum > result)
-                    result = maxSum;
+                var sum = arr[i] + table[i - 2];
+                table[i] = Math.Max(Math.Max(arr[i], sum), table[i - 1]);
             }
 
-            memo.Add(p, result);
-            return result;
+            return table[arr.Length - 1];
         }
 
         public static void RunMain()
         {
-            var memo = new Dictionary<int, long>();
-            var res = MaxSubsetSum(new[] {3, 7, 4, 6, 5});
-            // Console.WriteLine(res);
+            // var memo = new Dictionary<int, long>();
+            // var res = MaxSubsetSum(new[] {3, 7, 4, 6, 5});
+            // // Console.WriteLine(res);
 
-            // int n = Convert.ToInt32(Console.ReadLine());
-            //
-            // int[] arr = Array.ConvertAll(Console.ReadLine().Split(' '), arrTemp => Convert.ToInt32(arrTemp))
-            //     ;
-            // int res = MaxSubsetSum(arr);
-            //
-            // Console.WriteLine(res);
+            int n = Convert.ToInt32(Console.ReadLine());
+            
+            int[] arr = Array.ConvertAll(Console.ReadLine().Split(' '), arrTemp => Convert.ToInt32(arrTemp))
+                ;
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            var res = MaxSubsetSum(arr); 
+            stopwatch.Stop();
+            
+            Console.WriteLine(res);
+            Console.WriteLine(stopwatch.Elapsed.TotalSeconds);
         }
 
         static void Main2(string[] args)

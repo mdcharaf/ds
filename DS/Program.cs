@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DS.DP;
+using DS.DP.Problems;
 
 namespace DS
 {
@@ -9,7 +10,7 @@ namespace DS
     {
         static void Main(string[] args)
         {
-            PrintTabulation();
+            MagicalCows.RunMain(args);
         }
 
         static void PrintMemoization()
