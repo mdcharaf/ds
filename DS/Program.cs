@@ -10,7 +10,7 @@ namespace DS
     {
         static void Main(string[] args)
         {
-            MagicalCows.RunMain(args);
+            MountingScene.Main2(args);
         }
 
         static void PrintMemoization()
