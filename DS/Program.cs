@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DS.DataStructures;
 using DS.DP;
 using DS.DP.Problems;
+using DS.RecursiveAlgorithms;
 
 namespace DS
 {
@@ -10,7 +12,8 @@ namespace DS
     {
         static void Main(string[] args)
         {
-            MountingScene.Main2(args);
+            RecursiveAlgosProgram.Run
+                ();
         }
 
         static void PrintMemoization()
