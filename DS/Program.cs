@@ -12,8 +12,7 @@ namespace DS
     {
         static void Main(string[] args)
         {
-            RecursiveAlgosProgram.Run
-                ();
+            BSTProgram.RunBST();
         }
 
         static void PrintMemoization()
@@ -106,9 +105,9 @@ namespace DS
             //     new[] {"a", "p", "ent", "enter", "ot", "o", "t"})); 
             // PrintArrayArray(Tabulation.AllConstruct("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef",
             //     new[] {"e", "eee", "ee", "eeee", "eeeee", "eeeeee", "eeeeeeee"}));
-            
+
             PrintArrayArray(Tabulation.AllConstruct2("ABC",
-                new[] {"d", "a", "B", "c", "d"})); 
+                new[] {"d", "a", "B", "c", "d"}));
         }
 
         static void PrintArray<T>(IEnumerable<T> arr)
@@ -138,6 +137,7 @@ namespace DS
 
                     Console.Write("[{0}] ", string.Join(", ", arr));
                 }
+
                 Console.Write("]");
                 Console.WriteLine();
             }
