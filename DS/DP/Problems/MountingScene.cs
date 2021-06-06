@@ -10,7 +10,7 @@ namespace DS.DP.Problems
 
         static long GetScenesCount(int n, int width, int height)
         {
-            var ribbonSquares = Math.Min(n, height * width);
+            long ribbonSquares = Math.Min(n, height * width);
             var memo = new long?[width + 1, n + 1];
 
             long plainScenes = ribbonSquares / width + 1;
@@ -28,7 +28,7 @@ namespace DS.DP.Problems
             if (memo[w, n].HasValue) return memo[w, n].Value;
 
             long sum = 0;
-            for (int h = 0; h <= height; h++)
+            for (int h = 0; h <= height; h++) // note that here you want to tile 0 
             {
                 sum += CountScenes(w + 1, n - h, width, height, memo);
             }
