@@ -149,7 +149,7 @@ namespace DS.DP
                 {
                     if (i + word.Length >= table.Length)
                         continue;
-                    
+
                     var targetSubString = TrySubstring(targetString, i, word.Length);
                     if (targetSubString != null && targetSubString.Equals(word))
                     {
@@ -240,6 +240,59 @@ namespace DS.DP
             {
                 return null;
             }
+        }
+
+        static void PrintTabulation()
+        {
+            // Console.WriteLine(Tabulation.Fib(6));
+            // Console.WriteLine(Tabulation.Fib(7));
+            // Console.WriteLine(Tabulation.Fib(8));
+            // Console.WriteLine(Tabulation.Fib(50));
+
+            // Console.WriteLine(Tabulation.GridTraveller(1, 1)); // 1
+            // Console.WriteLine(Tabulation.GridTraveller(2, 3)); // 3
+            // Console.WriteLine(Tabulation.GridTraveller(3, 2)); // 3
+            // Console.WriteLine(Tabulation.GridTraveller(3, 3)); // 6
+            // Console.WriteLine(Tabulation.GridTraveller(18, 18)); // 2333606220
+
+            // Console.WriteLine(Tabulation.CanSum(7, new[] {2, 3})); // true
+            // Console.WriteLine(Tabulation.CanSum(7, new[] {5, 3, 4, 7})); // true
+            // Console.WriteLine(Tabulation.CanSum(7, new[] {2, 4})); // false
+            // Console.WriteLine(Tabulation.CanSum(8, new[] {2, 3, 5})); // true
+            // Console.WriteLine(Tabulation.CanSum(300, new[] {7, 14})); // false
+
+            // PrintArray(Tabulation.HowSum(7, new long []{2, 3})); // [3, 2, 2]
+            // PrintArray(Tabulation.HowSum(7, new long []{5, 3, 4, 7})); // [3, 4]
+            // PrintArray(Tabulation.HowSum(7, new long []{2, 4})); // null
+            // PrintArray(Tabulation.HowSum(8, new long []{2, 3, 5})); // [2, 2, 2, 2]
+            // PrintArray(Tabulation.HowSum(300, new long []{7, 14})); // null
+
+            // PrintArray(Tabulation.BestSum(7, new [] {5, 3, 4, 7})); //[7]
+            // PrintArray(Tabulation.BestSum(8, new [] {2, 3, 5})); // [3, 5]
+            // PrintArray(Tabulation.BestSum(8, new [] {1, 4, 5})); // [4, 4]
+            // PrintArray(Tabulation.BestSum(100, new [] {1, 2, 5, 25})); // [25, 25, 25, 25]
+
+            // Console.WriteLine(Tabulation.CountConstruct("purple", new[] {"purp", "p", "ur", "le", "purpl"})); //2
+            // Console.WriteLine(Tabulation.CountConstruct("abcdef", new[] {"ab", "abc", "cd", "def", "abcd"})); //1
+            // Console.WriteLine(Tabulation.CountConstruct("skateboard",
+            //     new[] {"bo", "rd", "ate", "t", "ska", "sk", "boar"})); //0
+            // Console.WriteLine(Tabulation.CountConstruct("enterpotentpot",
+            //     new[] {"a", "p", "ent", "enter", "ot", "o", "t"})); //4
+            // Console.WriteLine(Tabulation.CountConstruct("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef",
+            //     new[] {"e", "eee", "ee", "eeee", "eeeee", "eeeeee", "eeeeeeee"})); //0
+
+            // PrintArrayArray(Tabulation.AllConstruct("purple", new[] {"purp", "p", "ur", "le", "purpl"}));
+            // PrintArrayArray(Tabulation.AllConstruct("abcdef", new[] {"ab", "abc", "cd", "def", "abcd", "ef", "c"}));
+            // PrintArrayArray(Tabulation.AllConstruct("skateboard",
+            //     new[] {"bo", "rd", "ate", "t", "ska", "sk", "boar"})); 
+            // PrintArrayArray(Tabulation.AllConstruct("enterpotentpot",
+            //     new[] {"a", "p", "ent", "enter", "ot", "o", "t"})); 
+            // PrintArrayArray(Tabulation.AllConstruct("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef",
+            //     new[] {"e", "eee", "ee", "eeee", "eeeee", "eeeeee", "eeeeeeee"}));
+
+            // PrintArrayArray(Tabulation.AllConstruct2("ABC",
+            //     new[] {"d", "a", "B", "c", "d"})); 
+
         }
     }
 }
