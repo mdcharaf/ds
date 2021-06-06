@@ -9,16 +9,33 @@ namespace DS.Graphs
         {
             var map = new Dictionary<int, ICollection<int>>();
 
-            foreach (var pair in edgeList)
+            foreach (var edge in edgeList)
             {
-                map.TryAdd(pair[0], new HashSet<int>());
-                map.TryAdd(pair[1], new HashSet<int>());
+                map.TryAdd(edge[0], new HashSet<int>());
+                map.TryAdd(edge[1], new HashSet<int>());
             }
 
-            foreach (var pair in edgeList)
+            foreach (var edge in edgeList)
             {
-                map[pair[0]].Add(pair[1]);
-                map[pair[1]].Add(pair[0]);
+                map[edge[0]].Add(edge[1]);
+                map[edge[1]].Add(edge[0]);
+            }
+
+            return map;
+        }
+
+        public static IDictionary<int, ICollection<int>> BuildDirectedAdjacencyList(int[][] edgeList)
+        {
+            var map = new Dictionary<int, ICollection<int>>();
+
+            foreach (var edge in edgeList)
+            {
+                map.TryAdd(edge[0], new List<int>());
+            }
+            
+            foreach (var edge in edgeList)
+            {
+                map[edge[0]].Add(edge[1]);
             }
 
             return map;
@@ -32,9 +49,9 @@ namespace DS.Graphs
             Console.Write($"{at} ");
             
             var list = adjacencyList[at];
-            foreach (var item in list)
+            foreach (var vertex in list)
             {
-                DFS(adjacencyList, visited, item);
+                DFS(adjacencyList, visited, vertex);
             }
         }
     }
