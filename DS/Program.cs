@@ -5,6 +5,7 @@ using DS.CodeSignal;
 using DS.DP;
 using DS.DP.Problems;
 using DS.Graphs;
+using DS.LeetCode;
 
 namespace DS
 {
@@ -12,7 +13,7 @@ namespace DS
     {
         static void Main(string[] args)
         {
-            CodeSignalProgram.Run();
+            LeetCodeProgram.Run();
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using DS.CodeSignal.IvPrep.DPBasic;
 using DS.CodeSignal.IvPrep.Trees;
 
 namespace DS.CodeSignal
@@ -7,68 +8,11 @@ namespace DS.CodeSignal
     {
         public static void Run()
         {
-            var t1 = new Tree<int>
-            {
-                left = new Tree<int>()
-                {
-                    value = 5,
-                    left = new Tree<int>()
-                    {
-                        value = 10,
-                        left = new Tree<int>()
-                        {
-                            value = 4,
-                            left = new Tree<int>()
-                            {
-                                value = 1
-                            },
-                            right = new Tree<int>()
-                            {
-                                value = 2
-                            }
-                        },
-                        right = new Tree<int>()
-                        {
-                            value = 6,
-                            right = new Tree<int>()
-                            {
-                                value = -1
-                            }
-                        }
-                    },
-                    right = new Tree<int>()
-                    {
-                        value = 7
-                    }
-                }
-            };
+            var arr = new[] {1, 3, 1, 100, 101};
 
-            var t2 = new Tree<int>()
-            {
-                value = 10,
-                left = new Tree<int>()
-                {
-                    value = 4,
-                    left = new Tree<int>()
-                    {
-                        value = 1
-                    },
-                    right = new Tree<int>()
-                    {
-                        value = 2
-                    }
-                },
-                right = new Tree<int>()
-                {
-                    value = 6,
-                    right = new Tree<int>()
-                    {
-                        value = -1
-                    }
-                }
-            };
+            var result = HouseRobberProblem.HouseRobbers(arr);
             
-            Console.WriteLine(IsSubtreeProblem.IsSubtree(t1, t2));
+            Console.WriteLine(result);
         }
     }
 }
