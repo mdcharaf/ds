@@ -8,9 +8,12 @@ namespace DS.CodeSignal
     {
         public static void Run()
         {
-            var arr = new[] {1, 3, 1, 100, 101};
+            var arr = new[] {0, 1};
+            var str =
+                "123";
 
-            var result = HouseRobberProblem.HouseRobbers(arr);
+            // Console.WriteLine(str.Length);
+            var result = MapDecodingProblem.MapDecoding(str);
             
             Console.WriteLine(result);
         }

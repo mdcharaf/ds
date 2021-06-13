@@ -13,7 +13,7 @@ namespace DS
     {
         static void Main(string[] args)
         {
-            LeetCodeProgram.Run();
+            CodeSignalProgram.Run();
         }
     }
 }
