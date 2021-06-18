@@ -1,4 +1,5 @@
 using System;
+using DS._LeetCode.Recursion;
 using DS.LeetCode.Problems;
 
 namespace DS.LeetCode
@@ -7,11 +8,8 @@ namespace DS.LeetCode
     {
         public static void Run()
         {
-            var nums = new int[] {0, 4, 3, 0};
-            int target = 0;
-            var result = TwoSumProblem.TwoSum(nums, target);
-            
-            Console.WriteLine($"{result[0]},{result[1]}");
+            var result = CombinationsProblem.Combine(4, 2);
+            Console.WriteLine(result.Count);
         }
     }
 }

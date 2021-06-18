@@ -6,6 +6,7 @@ using DS.DP;
 using DS.DP.Problems;
 using DS.Graphs;
 using DS.LeetCode;
+using DS.RecursiveAlgorithms;
 
 namespace DS
 {
@@ -13,7 +14,7 @@ namespace DS
     {
         static void Main(string[] args)
         {
-            CodeSignalProgram.Run();
+            LeetCodeProgram.Run();
         }
     }
 }
