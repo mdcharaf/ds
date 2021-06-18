@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
-namespace DS._LeetCode.DP
+namespace DS._LeetCode.Recursion
 {
     public class CombinationsSumIIProblem
     {
