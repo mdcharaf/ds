@@ -1,5 +1,6 @@
 using System;
 using DS._LeetCode.DP;
+using DS._LeetCode.Graphs;
 using DS._LeetCode.Recursion;
 using DS.LeetCode.Problems;
 
@@ -9,9 +10,16 @@ namespace DS.LeetCode
     {
         public static void Run()
         {
-            var arr = new[] {1, 2, 7, 6, 1, 5};
-            var result = CombinationsSumIIProblem.CombinationSum2(arr, 8);
-            Console.WriteLine(result.Count);
+            var grid = new[]
+            {
+                new[] {'1', '1', '1'},
+                new[] {'0', '1', '0'},
+                new[] {'1', '1', '1'},
+            };
+
+            var result = NumberOfIslandsProblem.NumIslands(grid);
+            
+            Console.WriteLine(result);
         }
     }
 }
