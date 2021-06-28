@@ -10,14 +10,10 @@ namespace DS.LeetCode
     {
         public static void Run()
         {
-            var grid = new[]
-            {
-                new[] {'1', '1', '1'},
-                new[] {'0', '1', '0'},
-                new[] {'1', '1', '1'},
-            };
-
-            var result = NumberOfIslandsProblem.NumIslands(grid);
+            // var arr = new[] {"hot", "dot", "dog", "lot", "log", "cog"};
+            // var result = WordLadderProblem.LadderLength("hit", "cog", arr);
+            var arr = new[] {"hot", "dog", "dot"};
+            var result = WordLadderProblem.LadderLength("hot", "dog", arr);
             
             Console.WriteLine(result);
         }
