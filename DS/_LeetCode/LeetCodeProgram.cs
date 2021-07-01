@@ -10,12 +10,6 @@ namespace DS.LeetCode
     {
         public static void Run()
         {
-            // var arr = new[] {"hot", "dot", "dog", "lot", "log", "cog"};
-            // var result = WordLadderProblem.LadderLength("hit", "cog", arr);
-            var arr = new[] {"hot", "dog", "dot"};
-            var result = WordLadderProblem.LadderLength("hot", "dog", arr);
-            
-            Console.WriteLine(result);
         }
     }
 }
