@@ -23,7 +23,7 @@ namespace DS.DisjointSets
         
         public int ComponentsCount { get; private set; }
         
-        public bool Unify(int p, int q)
+        public bool Union(int p, int q)
         {
             var root1 = Find(p);
             var root2 = Find(q);
