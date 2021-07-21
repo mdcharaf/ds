@@ -41,6 +41,7 @@ namespace DS.Graphs.BFSApps
                             grid[nextX][nextY] == 0)
                         {
                             queue.Enqueue(new[] {nextX, nextY});
+                            visited[nextX, nextY] = true;
                         }
                     
                     }
