@@ -16,7 +16,6 @@ namespace DS.Graphs
             while (queue.Count > 0)
             {
                 var node = queue.Dequeue();
-                // Process Node
 
                 foreach (var neighbor in graph[node])
                 {
