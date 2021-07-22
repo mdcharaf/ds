@@ -4,7 +4,7 @@ namespace DS.Graphs.BFSApps
 {
     public class GridShortestPath
     {
-        private readonly int[][] _directions = new[] { new[] {0, 1}, new[] {0, -1}, new[] {1, 0}, new[] {-1, 0}};
+        private readonly int[][] _directions = { new[] {0, 1}, new[] {0, -1}, new[] {1, 0}, new[] {-1, 0}};
         
         public int GetShortestDistance(int[][] grid, int[] start, int[] dest)
         {
