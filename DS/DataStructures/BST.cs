@@ -22,23 +22,7 @@ namespace DS.DataStructures
     {
         public static void BreadthFirstTraverse<T>(TreeNode<T> root)
         {
-            Console.WriteLine();
-            var queue = new Queue<TreeNode<T>>();
-            queue.Enqueue(root);
-            Console.Write("[");
 
-            while (queue.Count > 0)
-            {
-                var node = queue.Dequeue();
-
-                if (node.Left != null) queue.Enqueue(node.Left);
-                if (node.Right != null) queue.Enqueue(node.Right);
-
-                Console.Write($"{node.Val}, ");
-            }
-
-            Console.Write("]");
-            Console.WriteLine();
         }
 
         public static void StackDepthFirstTraverse<T>(TreeNode<T> root)
