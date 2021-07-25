@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DS.Graphs
+namespace DS.Graphs.DFSApps
 {
     public class TopologicalSort
     {
