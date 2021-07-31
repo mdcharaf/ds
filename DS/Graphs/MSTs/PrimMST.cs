@@ -6,15 +6,13 @@ namespace DS.Graphs.MSTs
 {
     public class PrimMST
     {
-        public (Vertex[], double) GetMST(int n, int[][] graph, int start = 0)
+        public Vertex[] GetMST(int[][] graph, int start = 0)
         {
-            var minSum = 0;
-            
             // Initialize Vertices Array
-            var vertices = new Vertex[n];
-            for (int i = 0; i < n; i++)
+            var vertices = new Vertex[graph.Length];
+            for (int i = 0; i < graph.Length; i++)
             {
-                vertices[i] = new Vertex {Val = i, Key = int.MaxValue, Parent = -1, IsProcessed = false };
+                vertices[i] = new Vertex {Val = i};
             }
 
             vertices[start].Key = 0;
@@ -31,6 +29,7 @@ namespace DS.Graphs.MSTs
             {
                 var vertex = queue.Dequeue();
                 var u = vertex.Val;
+                vertex.IsProcessed = true;
 
                 for (int v = 0; v < graph[u].Length; v++)
                 {
@@ -41,14 +40,37 @@ namespace DS.Graphs.MSTs
                     {
                         neighbor.Parent = u;
                         neighbor.Key = distance;
-                        minSum += distance;
                         
                         queue.UpdatePriority(neighbor, neighbor.Key);
                     }
                 }
             }
 
-            return (vertices, minSum);
+            return vertices;
+        }
+
+        public void Test()
+        {
+            var adjacencyMatrix = new[]
+            { new[] { 0,0,0,3,12 },
+                new int[] { 0,0,2,5,0 },
+                new int[] { 0,2,0,3,7 },
+                new int[] { 3,5,3,0,0 },
+                new int[] { 12,0,7,0,0 } };
+
+            var vertices = GetMST(adjacencyMatrix);
+            //printing results
+            int totalWeight = 0;
+            foreach (Vertex u in vertices)
+            {
+                if (u.Parent >= 0)
+                {
+                    Console.WriteLine("Vertex {0} to Vertex {1} weight is: {2}", u.Val, u.Parent, u.Key);
+                    totalWeight += u.Key;
+                }
+            }
+            Console.WriteLine("Total Weight: {0}", totalWeight);
+            Console.ReadLine();
         }
     }
 }
