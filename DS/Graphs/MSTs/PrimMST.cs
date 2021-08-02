@@ -15,13 +15,13 @@ namespace DS.Graphs.MSTs
                 vertices[i] = new Vertex {Val = i};
             }
 
-            vertices[start].Key = 0;
+            vertices[start].Distance = 0;
             
             // Initialize PQ
             var queue = new PriorityQueue<Vertex>();
             foreach (var vertex in vertices)
             {
-                queue.Enqueue(vertex.Key, vertex);
+                queue.Enqueue(vertex.Distance, vertex);
             }
             
             // Loop and update distances
@@ -36,12 +36,12 @@ namespace DS.Graphs.MSTs
                     var distance = graph[u][v];
                     var neighbor = vertices[v];
                     
-                    if (distance > 0 && !neighbor.IsProcessed && distance < neighbor.Key)
+                    if (distance > 0 && !neighbor.IsProcessed && distance < neighbor.Distance)
                     {
-                        neighbor.Parent = u;
-                        neighbor.Key = distance;
+                        neighbor.Parent = vertex;
+                        neighbor.Distance = distance;
                         
-                        queue.UpdatePriority(neighbor, neighbor.Key);
+                        queue.UpdatePriority(neighbor, neighbor.Distance);
                     }
                 }
             }
@@ -63,10 +63,10 @@ namespace DS.Graphs.MSTs
             int totalWeight = 0;
             foreach (Vertex u in vertices)
             {
-                if (u.Parent >= 0)
+                if (u.Parent != null)
                 {
-                    Console.WriteLine("Vertex {0} to Vertex {1} weight is: {2}", u.Val, u.Parent, u.Key);
-                    totalWeight += u.Key;
+                    Console.WriteLine("Vertex {0} to Vertex {1} weight is: {2}", u.Val, u.Parent, u.Distance);
+                    totalWeight += u.Distance;
                 }
             }
             Console.WriteLine("Total Weight: {0}", totalWeight);

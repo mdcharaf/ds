@@ -75,7 +75,7 @@ namespace DS.DataStructures
             for (; i <= _heapSize; i++)
             {
                 Node node = _queue[i];
-                if (object.ReferenceEquals(node.Object, obj))
+                if (object.Equals(node.Object, obj))
                 {
                     node.Priority = priority;
                     if (_isMinPriorityQueue)
@@ -96,7 +96,7 @@ namespace DS.DataStructures
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public bool Has(T obj)
+        public bool Contains(T obj)
         {
             foreach (Node node in _queue)
                 if (ReferenceEquals(node.Object, obj))
