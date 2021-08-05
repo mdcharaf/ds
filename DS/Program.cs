@@ -16,9 +16,9 @@ namespace DS
     {
         static void Main(string[] args)
         {
-            // LeetCodeProgram.Run();
-            var obj = new DijkstraShortestPath();
-            obj.Test();
+            LeetCodeProgram.Run();
+            // var obj = new DijkstraShortestPath();
+            // obj.Test();
         }
         
     }

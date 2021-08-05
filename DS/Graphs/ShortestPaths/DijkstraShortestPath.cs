@@ -110,37 +110,26 @@ namespace DS.Graphs.ShortestPaths
             {
                 new int[] {0, 0, 0, 3, 12},
                 new int[] {0, 0, 2, 0, 0},
-                new int[] {0, 0, 0, -2, 0},
+                new int[] {0, 0, 0, 0, 0},
                 new int[] {0, 5, 3, 0, 0},
                 new int[] {0, 0, 7, 0, 0}
             };
 
-            adjacencyMatrix = new int[][]
-            {
-                new int[] {0, 0, 0, 2, 10},
-                new int[] {0, 0, 3, 0, 3},
-                new int[] {0, 0, 0, 0, 0},
-                new int[] {0, 1, 0, 0, 0},
-                new int[] {0, 1, 0, 0, 0},
-            };
+            // adjacencyMatrix = new int[][]
+            // {
+            //     new int[] {0, 0, 0, 2, 10},
+            //     new int[] {0, 0, 3, 0, 3},
+            //     new int[] {0, 0, 0, 0, 0},
+            //     new int[] {0, 1, 0, 0, 0},
+            //     new int[] {0, 1, 0, 0, 0},
+            // };
 
             //calling dijkstra  algorithm
             // var vertices = GetShortestPath(adjacencyMatrix, 0);
-            var result = GetShortestPath2(adjacencyMatrix.Length, adjacencyMatrix, 2);
+            var result = GetShortestPath2(adjacencyMatrix.Length, adjacencyMatrix, 0);
 
             //printing distance
             Console.ReadLine();
-        }
-
-        void PrintPath(Vertex u, Vertex v)
-        {
-            if (v != u)
-            {
-                PrintPath(u, v.Parent);
-                Console.WriteLine("Vertex {0} weight: {1}", v.Val, v.Distance);
-            }
-            else
-                Console.WriteLine("Vertex {0} weight: {1}", v.Val, v.Distance);
         }
     }
 }
